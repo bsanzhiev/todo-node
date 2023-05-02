@@ -27,7 +27,6 @@ app.post("/todos", async (req, res) => {
       checked: false,
       createTag: Date.now()
     };
-    console.log(req.body.text);
 
     // Insert the new todo into the "todos" collection
     const result = await db.collection("todos").insertOne(todo);
