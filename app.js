@@ -1,20 +1,24 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const { MongoClient, ObjectID } = require('mongodb');
 const app = express();
-const port = 3000;
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Middleware for parsing request bodies
 app.use(express.json());
 
 // MongoDB connection URL and database name
-const url = 'mongodb+srv://bator:DaI0P8LJQrpjRrDm@cluster0.d7giokq.mongodb.net/?retryWrites=true&w=majority';
+const uri = process.env.MONGODB_URI;
+const PORT = process.env.PORT || 3000;
 const dbName = 'tododb';
 
 // Define a route for creating a new todo
 app.post('/todos', async (req, res) => {
   try {
     // Connect to the MongoDB database
-    const client = await MongoClient.connect(url);
+    const client = await MongoClient.connect(uri);
     const db = client.db(dbName);
 
     // Create a new todo document
@@ -48,7 +52,7 @@ app.post('/todos', async (req, res) => {
 app.get('/todos', async (req, res) => {
   try {
     // Connect to the MongoDB database
-    const client = await MongoClient.connect(url);
+    const client = await MongoClient.connect(uri);
     const db = client.db(dbName);
 
     // Retrieve all todos from the "todos" collection
@@ -99,7 +103,7 @@ app.put('/todos/:id', async (req, res) => {
 app.delete('/todos/:id', async (req, res) => {
   try {
     // Connect to the MongoDB database
-    const client = await MongoClient.connect(url);
+    const client = await MongoClient.connect(uri);
     const db = client.db(dbName);
 
     // Delete the specified todo document
@@ -123,6 +127,6 @@ app.delete('/todos/:id', async (req, res) => {
     });
     
     // Start the server
-    app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+    app.listen(PORT, () => {
+    console.log(`Server listening at port:${PORT}`);
     });
