@@ -65,7 +65,7 @@ app.get('/todos', async (req, res) => {
     client.close();
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error hahaha' });
   }
 });
 
