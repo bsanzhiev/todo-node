@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const { MongoClient, ObjectID } = require("mongodb");
 const app = express();
 
+// Node.js MongoDB Driver connection string
 // Load environment variables from .env file
 dotenv.config();
 
