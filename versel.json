@@ -7,6 +7,10 @@
   ],
   "routes": [
     {
+      "src": "/todos",
+      "dest": "/todos"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     }
