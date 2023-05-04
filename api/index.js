@@ -1,3 +1,6 @@
+// This file creates for a Vercel deployment.
+// It is not necessary for a Heroku deployment.
+
 const express = require("express");
 const dotenv = require("dotenv");
 const { MongoClient, ObjectID } = require("mongodb");

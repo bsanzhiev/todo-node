@@ -1,3 +1,6 @@
+// This is file for a Render deployment.
+// And for local development.
+
 const express = require("express");
 const dotenv = require("dotenv");
 const { MongoClient, ObjectID } = require("mongodb");
