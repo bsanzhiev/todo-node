@@ -9,15 +9,16 @@ dotenv.config();
 
 // Middleware for parsing request bodies
 app.use(express.json());
+app.use(express.static('public'));
 
 // MongoDB connection URL and database name
 const uri = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3000;
 const dbName = "tododb";
 
-app.get("/", (req, res) => {
-  res.send("This is backend for Todo React Demo App! To get all todos, go to /todos.");
-});
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
+})
 
 // Define a route for creating a new todo
 app.post("/todos", async (req, res) => {
