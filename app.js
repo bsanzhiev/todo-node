@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 const dbName = "tododb";
 
 app.get("/", (req, res) => {
-  res.send("This is backend server for Todo React Demo App! To get all todos, go to /todos");
+  res.send("This is backend for Todo React Demo App! To get all todos, go to /todos.");
 });
 
 // Define a route for creating a new todo
@@ -48,7 +48,7 @@ app.post("/todos", async (req, res) => {
     client.close();
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal server error wiii uuu" });
+    res.status(500).json({ error: "Internal server error while creating a new todo" });
   }
 });
 
@@ -69,7 +69,7 @@ app.get("/todos", async (req, res) => {
     client.close();
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal server error hahaha" });
+    res.status(500).json({ error: "Internal server error while retrieving all todos" });
   }
 });
 
@@ -101,7 +101,7 @@ app.put("/todos/:id", async (req, res) => {
     client.close();
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error while updating a todo" });
   }
 });
 
@@ -130,7 +130,7 @@ app.delete("/todos/:id", async (req, res) => {
     client.close();
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error while deleting a todo" });
   }
 });
 
