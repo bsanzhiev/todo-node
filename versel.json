@@ -8,7 +8,7 @@
   "routes": [
     {
       "src": "/todos",
-      "dest": "/todos"
+      "dest": "api/todos"
     },
     {
       "src": "/(.*)",
