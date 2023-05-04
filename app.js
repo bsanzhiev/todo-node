@@ -15,6 +15,10 @@ const uri = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3000;
 const dbName = "tododb";
 
+app.get("/", (req, res) => {
+  res.send("This is backend server for Todo React Demo App! To get all todos, go to /todos");
+});
+
 // Define a route for creating a new todo
 app.post("/todos", async (req, res) => {
   try {
