@@ -12,20 +12,22 @@ app.use(bodyParser.json());
 dotenv.config();
 
 // Connect to the MongoDB database
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.log(err));
 
 // Define a schema for todos
-const todoSchema = new mongoose.Schema({
-  text: {type: String, required: true},
-  checked: {type: Boolean, default: false},
-  createTag: {type: Date, default: Date.now}
-},
-{collection: "todos"}
+const todoSchema = new mongoose.Schema(
+  {
+    text: { type: String, required: true },
+    checked: { type: Boolean, default: false },
+    createTag: { type: Date, default: Date.now },
+  },
+  { collection: "todos" }
 );
 
 // Define a model for todos
@@ -33,9 +35,10 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 // Index page
 app.get("/", (req, res) => {
-  res.send(
-    "This is backend for Todo React Demo App! To get all todos, go to /todos."
-  );
+  // res.send(
+  //   "This is backend for Todo React Demo App! To get all todos, go to /todos."
+  // );
+  res.sendFile("index.html", { root: path.join(__dirname, "public") });
 });
 
 // FETCH ALL TODOS
@@ -78,7 +81,7 @@ app.post("/todos", async (req, res) => {
 // UPDATE TODO
 app.put("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  const {text, checked} = req.body;
+  const { text, checked } = req.body;
   try {
     // Find the todo document by its id
     const todo = await Todo.findOneAndUpdate(
