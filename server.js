@@ -35,10 +35,9 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 // Index page
 app.get("/", (req, res) => {
-  // res.send(
-  //   "This is backend for Todo React Demo App! To get all todos, go to /todos."
-  // );
-  res.sendFile("index.html", { root: path.join(__dirname, "public") });
+  res.send(
+    "This is backend for Todo React Demo App! To get all todos, go to /todos."
+  );
 });
 
 // FETCH ALL TODOS
