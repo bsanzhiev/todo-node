@@ -4,3 +4,22 @@
   //     "destination": "/api"
   //   }
   // ]
+
+  
+    // Connect to the MongoDB database
+    // const client = await new MongoClient.connect(uri);
+    // const db = client.db(dbName);
+    
+    // Delete the specified todo document
+    let id = {_id: ObjectId(req.params['id'])};
+    const result = await db.collection("todos").deleteOne({ _id: id });
+    // Close the MongoDB connection
+    client.close();
+
+    // If no document was deleted, return a 404 response
+    if (result.deletedCount === 0) {
+      res.status(404).json({ error: "Todo not found" });
+      return;
+    }
+    // Return a success response
+    res.status(204).end();
