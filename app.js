@@ -4,12 +4,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const { MongoClient, ObjectID } = require("mongodb");
-const app = express();
+const cors = require("cors");
 
-// Node.js MongoDB Driver connection string
+
+const app = express();
+// Work with CORS
+app.use(cors());
 // Load environment variables from .env file
 dotenv.config();
-
 // Middleware for parsing request bodies
 app.use(express.json());
 
