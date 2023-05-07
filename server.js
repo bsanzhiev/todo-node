@@ -78,18 +78,18 @@ app.post("/todos", async (req, res) => {
 
 // UPDATE TODO
 app.put("/todos/:id", async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const { text, checked } = req.body;
+  console.log(req.body, req.params);
   try {
     // Find the todo document by its id
-    const todo = await Todo.findOneAndUpdate(
+    const updatedTodo = await Todo.findByIdAndUpdate(
       id,
       { text, checked },
       { new: true }
     );
-
     // If the document doesn't exist
-    if (!todo) {
+    if (!updatedTodo) {
       return res.status(404).json({ error: "No todo with given id" });
     }
 
@@ -98,7 +98,8 @@ app.put("/todos/:id", async (req, res) => {
     // await todo.save();
 
     // Return success response
-    res.json({ success: true });
+    res.json(updatedTodo);
+    // res.json({ success: true });
   } catch (err) {
     console.log(err);
     res
