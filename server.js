@@ -119,7 +119,8 @@ app.delete("/todos/:id", async (req, res) => {
     }
 
     // Return success response
-    res.json({ success: true });
+    const id = todo._id;
+    res.json(id.toString());
   } catch (err) {
     console.log(err);
     res
